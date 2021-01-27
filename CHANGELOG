@@ -1,0 +1,13 @@
+#LLA 27/01/21
+Versionning
+
+Version = X.Y.U.Z
+•	X=17 pour la version de BC. 
+•	Y=0 pour la version fonctionnelle. Si de nouvelles fonctionnalités arrivent on incrémente.
+A priori le X et Y sont stables.
+•	U=AAMM avec AA année et MM pour mois. Bien vérifier avant chaque changement de période.
+•	Z=version du pull Request. Voir ci-dessous
+En terme de procédure :
+•	Faire le pull request dans TFS/devOps
+•	Commit et push de la version app.json depuis vscode pour mettre en conformité. 
+•	Pull from master avant de compiler et de livrer.
