@@ -29,11 +29,10 @@ pageextension 50100 "PurchaseOrderExt" extends "Purchase Order" //50
         CstG0001: Label 'There are no lines in the command %1', Comment = 'FRA="Il n’y a pas de lignes dans la commande %1"';
         CstG0002: Label 'Order N° %1 different from current order n° %2', Comment = 'FRA="N° de Commande %1 différent de la N° de commande actuelle %2"';
         CstG0003: Label 'Item %1 does not exist in the order', Comment = 'FRA="L''article %1 n''existe pas dans la commande"';
+        CstG0004: Label 'Serial number %1 exist in the order', Comment = 'FRA="Le N° de série %1 est dèjà utilisé"';
         TxtGFileName: Text[100];
         TxtGSheetName: Text[100];
         TempExcelBuffer: Record "Excel Buffer" temporary;
-        Rows: Integer;
-        EntryNo: Integer;
         RecGTrackingSpecification: record "Tracking Specification";
         RecGReservationEntry: Record "Reservation Entry";
 
@@ -59,6 +58,8 @@ pageextension 50100 "PurchaseOrderExt" extends "Purchase Order" //50
     procedure ImportExcelData()
     var
         RowNo: Integer;
+        Rows: Integer;
+        EntryNo: Integer;
         RecLItem: Record item;
         RecLPurchaseLine: Record "Purchase Line";
         CodLOrderNo: Code[20];
@@ -66,6 +67,7 @@ pageextension 50100 "PurchaseOrderExt" extends "Purchase Order" //50
         CodLSerialNo: Code[50];
         RecLReservationEntry: Record "Reservation Entry";
     begin
+        Rows := 0;
         TempExcelBuffer.Reset();
         TempExcelBuffer.SetRange("Column No.", 1);
         If TempExcelBuffer.FindFirst() then
@@ -90,6 +92,14 @@ pageextension 50100 "PurchaseOrderExt" extends "Purchase Order" //50
                     IF RecLItem.get(CodLItemNo) then
                         //Vérifier que l'article a un code traçabilié
                         IF RecLItem."Item Tracking Code" <> '' then begin
+                            RecLReservationEntry.Reset();
+                            RecLReservationEntry.SetRange("Item No.", CodLItemNo);
+                            RecGReservationEntry.SetRange("Source ID", CodLOrderNo);
+                            RecLReservationEntry.SetRange("Serial No.", CodLSerialNo);
+                            if RecLReservationEntry.FindFirst() then
+                                Error(CstG0004, CodLSerialNo);
+                            RecLReservationEntry.Reset();
+
                             IF RecLReservationEntry.FindLast() then
                                 EntryNo := RecLReservationEntry."Entry No." + 1
                             else
@@ -99,6 +109,7 @@ pageextension 50100 "PurchaseOrderExt" extends "Purchase Order" //50
                             RecGReservationEntry."Entry No." := EntryNo;
                             RecGReservationEntry.validate("Item No.", CodLItemNo);
                             RecGReservationEntry.validate("Quantity (Base)", 1);
+                            RecGReservationEntry.validate("Location Code", RecLPurchaseLine."Location Code");
                             RecGReservationEntry."Reservation Status" := RecGReservationEntry."Reservation Status"::Surplus;
                             RecGReservationEntry."Source Type" := Database::"Purchase Line";
                             RecGReservationEntry."Source Subtype" := RecGReservationEntry."Source Subtype"::"1";
@@ -111,7 +122,7 @@ pageextension 50100 "PurchaseOrderExt" extends "Purchase Order" //50
                             RecGReservationEntry.Insert();
                         end;
                 end else
-                    Error('CstG0003', CodLItemNo);
+                    Error(CstG0003, CodLItemNo);
             end;
         end;
     end;

@@ -23,6 +23,11 @@
           <note from="Developer" annotates="general" priority="2">FRA="L'article %1 n'existe pas dans la commande"</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension PurchaseOrderExt - NamedType CstG0003</note>
         </trans-unit>
+        <trans-unit id="PageExtension 3032686328 - NamedType 4263792945" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3032686328">
+          <source>Serial number %1 exist in the order</source>
+          <note from="Developer" annotates="general" priority="2">FRA="Le N° de série %1 est dèjà utilisé"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PurchaseOrderExt - NamedType CstG0004</note>
+        </trans-unit>
       </group>
     </body>
   </file>
