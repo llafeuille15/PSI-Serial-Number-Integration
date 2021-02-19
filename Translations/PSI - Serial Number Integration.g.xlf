@@ -8,17 +8,17 @@
           <note from="Developer" annotates="general" priority="2">FRA="Import N° Série"</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension PurchaseOrderExt - Action ImportSeriesNo - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3032686328 - NamedType 3157308734" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 387971303">
+        <trans-unit id="PageExtension 3032686328 - NamedType 3157308734" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3032686328">
           <source>There are no lines in the command %1</source>
           <note from="Developer" annotates="general" priority="2">FRA="Il n’y a pas de lignes dans la commande %1"</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension PurchaseOrderExt - NamedType CstG0001</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3032686328 - NamedType 1244218883" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 387971303">
+        <trans-unit id="PageExtension 3032686328 - NamedType 1244218883" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3032686328">
           <source>Order N° %1 different from current order n° %2</source>
           <note from="Developer" annotates="general" priority="2">FRA="N° de Commande %1 différent de la N° de commande actuelle %2"</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension PurchaseOrderExt - NamedType CstG0002</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3032686328 - NamedType 1881915500" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 387971303">
+        <trans-unit id="PageExtension 3032686328 - NamedType 1881915500" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 3032686328">
           <source>Item %1 does not exist in the order</source>
           <note from="Developer" annotates="general" priority="2">FRA="L'article %1 n'existe pas dans la commande"</note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension PurchaseOrderExt - NamedType CstG0003</note>
